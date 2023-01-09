@@ -1,28 +1,39 @@
-# ᐸRepository nameᐳ
+# nest-pino
 
-[![npm@latest](https://img.shields.io/npm/v/@byndyusoft/base-template/latest.svg)](https://www.npmjs.com/package/@byndyusoft/base-template)
-[![test](https://github.com/Byndyusoft/node-base-template/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/Byndyusoft/node-base-template/actions/workflows/test.yaml)
+[![npm@latest](https://img.shields.io/npm/v/@byndyusoft/nest-pino/latest.svg)](https://www.npmjs.com/package/@byndyusoft/nest-pino)
+[![test](https://github.com/Byndyusoft/nest-pino/actions/workflows/test.yaml/badge.svg?branch=master)](https://github.com/Byndyusoft/nest-pino/actions/workflows/test.yaml)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-ᐸRepository descriptionᐳ
+Patches for `nestjs-pino`
 
 ## Requirements
 
-- Node.js v14 LTS or later
+- Node.js v16 LTS or later
 - Yarn
 
 ## Install
 
 ```bash
-yarn add ᐸPackage nameᐳ
+yarn add @byndyusoft/nest-pino
+```
+
+## Migrate to `byndyusoft/nest-pino`
+
+- Replace import
+
+```bash
+yarn dlx jscodeshift ./packages/app --extensions=ts --parser=ts --transform=./node_modules/@byndyusoft/nest-pino/codemods/replace-import-specifier.js
+```
+
+- Fix lint issues
+
+```bash
+yarn run lint:fix
 ```
 
 ## Usage
 
-```typescript
-// Usage example
-```
+[See upstream README](https://github.com/iamolegga/nestjs-pino#readme)
 
 ## Maintainers
 

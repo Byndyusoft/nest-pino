@@ -1,10 +1,81 @@
 name: deploy
 
 on:
-  - workflow_dispatch
+  release:
+    types:
+      - published
 
 jobs:
   deploy:
-    uses: Byndyusoft/node-reusable-workflows/.github/workflows/deploy.yaml@master
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: extract tag from ref
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: extract versions from tag
+        id: versions
+        run: |
+          NEW_VERSION=$(echo $GITHUB_REF_SLUG | sed 's/^v//')
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "UPSTREAM_VERSION=$(echo $NEW_VERSION | sed 's/-.*$//')" >> $GITHUB_OUTPUT
+
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: checkout nestjs-pino
+        uses: actions/checkout@v3
+        with:
+          repository: iamolegga/nestjs-pino
+          ref: ${{ steps.versions.outputs.UPSTREAM_VERSION }}
+          path: ./upstream
+
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+          registry-url: https://registry.npmjs.org
+
+      - name: install sponge
+        run: |
+          sudo apt-get update
+          sudo apt-get install moreutils
+
+      - name: copy files to upstream
+        run: cp -r ./codemods ./LICENSE ./README.md ./upstream
+
+      - name: change upstream package.json
+        working-directory: ./upstream
+        run: >-
+          jq
+          --arg name @byndyusoft/nest-pino
+          --arg version ${{ steps.versions.outputs.NEW_VERSION }}
+          --arg author Byndyusoft
+          --arg license Apache-2.0
+          --arg repository https://github.com/Byndyusoft/nest-pino
+          '.name = $name |
+          .version = $version |
+          .author = $author |
+          .license = $license |
+          .repository = $repository |
+          .files += ["codemods"] |
+          del(.scripts.postinstall)'
+          package.json | sponge package.json
+
+      - name: remove junk files
+        working-directory: ./upstream
+        run: rm postinstall.js war.jpg
+
+      - name: install dependencies
+        working-directory: ./upstream
+        run: npm ci
+
+      - name: unit tests
+        working-directory: ./upstream
+        run: npm run test
+
+      - name: publish
+        working-directory: ./upstream
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

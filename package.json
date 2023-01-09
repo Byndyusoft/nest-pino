@@ -1,48 +1,40 @@
 {
-  "name": "@byndyusoft/base-template",
+  "name": "nest-pino",
   "version": "0.0.0-development",
-  "description": "Base template for Node.js packages",
-  "homepage": "https://github.com/Byndyusoft/node-base-template#readme",
+  "private": true,
+  "description": "Patches for nestjs-pino",
+  "homepage": "https://github.com/Byndyusoft/nest-pino#readme",
   "bugs": {
-    "url": "https://github.com/Byndyusoft/node-base-template/issues"
+    "url": "https://github.com/Byndyusoft/nest-pino/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Byndyusoft/node-base-template.git"
+    "url": "https://github.com/Byndyusoft/nest-pino.git"
   },
   "license": "Apache-2.0",
   "author": "Byndyusoft",
   "scripts": {
     "postinstall": "husky install",
-    "lint": "yarn run lint:eslint && yarn run lint:markdown && yarn run lint:prettier",
-    "lint:eslint": "eslint --ignore-path ./.gitignore --max-warnings 0 --ext .ts,.js .",
-    "lint:eslint:fix": "eslint --ignore-path ./.gitignore --fix --ext .ts,.js .",
-    "lint:fix": "yarn run lint:eslint:fix && yarn run lint:markdown:fix && yarn run lint:prettier:fix",
+    "lint": "yarn run lint:markdown && yarn run lint:prettier",
+    "lint:fix": "yarn run lint:markdown:fix && yarn run lint:prettier:fix",
     "lint:markdown": "markdownlint --ignore-path ./.gitignore \"./**/*.md\"",
     "lint:markdown:fix": "markdownlint --ignore-path ./.gitignore --fix \"./**/*.md\"",
-    "lint:prettier": "prettier --ignore-path ./.gitignore --check \"./**/*.{ts,js,json,yaml,yml,md}\"",
-    "lint:prettier:fix": "prettier --ignore-path ./.gitignore --write \"./**/*.{ts,js,json,yaml,yml,md}\"",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "lint:prettier": "prettier --ignore-path ./.gitignore --check \"./**/*.{json,yaml,yml,md}\"",
+    "lint:prettier:fix": "prettier --ignore-path ./.gitignore --write \"./**/*.{json,yaml,yml,md}\""
   },
   "devDependencies": {
-    "@byndyusoft/eslint-config": "2.1.0",
-    "@commitlint/cli": "17.1.2",
-    "@commitlint/config-conventional": "17.1.0",
-    "eslint": "8.24.0",
-    "husky": "8.0.1",
-    "lint-staged": "13.0.3",
-    "markdownlint-cli": "0.32.2",
-    "pinst": "3.0.0",
-    "prettier": "2.7.1",
-    "prettier-plugin-packagejson": "2.2.18",
-    "semantic-release": "19.0.5"
+    "@commitlint/cli": "17.4.0",
+    "@commitlint/config-conventional": "17.4.0",
+    "@types/jscodeshift": "0.11.6",
+    "husky": "8.0.3",
+    "jscodeshift": "0.14.0",
+    "lint-staged": "13.1.0",
+    "markdownlint-cli": "0.33.0",
+    "prettier": "2.8.2",
+    "prettier-plugin-packagejson": "2.3.0"
   },
-  "packageManager": "yarn@4.0.0-rc.21",
+  "packageManager": "yarn@4.0.0-rc.35",
   "engines": {
-    "node": ">=14"
-  },
-  "publishConfig": {
-    "access": "public"
+    "node": ">=16"
   }
 }
