@@ -17,7 +17,7 @@ Patches for `nestjs-pino`
 yarn add @byndyusoft/nest-pino
 ```
 
-## Migrate to `byndyusoft/nest-pino`
+## Migrate to `@byndyusoft/nest-pino`
 
 - Replace import
 
