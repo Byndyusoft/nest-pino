@@ -35,6 +35,13 @@ yarn run lint:fix
 
 [See upstream README](https://github.com/iamolegga/nestjs-pino#readme)
 
+## How to release new version
+
+- Get tag from [upstream releases](https://github.com/iamolegga/nestjs-pino/releases) and verify codebase
+- Make changes in patches and [deploy](./.github/workflows/deploy.yaml) workflow if necessary
+- Create new tag and release in this repository in format: **v**_[upstream tag]_-_[patch version]_, e.g. `v3.1.2-1`
+- See deploy progress [here](https://github.com/Byndyusoft/nest-pino/actions/workflows/deploy.yaml)
+
 ## Maintainers
 
 - [@Byndyusoft/owners](https://github.com/orgs/Byndyusoft/teams/owners) <<github.maintain@byndyusoft.com>>
