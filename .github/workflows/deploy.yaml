@@ -21,10 +21,10 @@ jobs:
           echo "UPSTREAM_VERSION=$(echo $NEW_VERSION | sed 's/-.*$//')" >> $GITHUB_OUTPUT
 
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: checkout nestjs-pino
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: iamolegga/nestjs-pino
           ref: ${{ steps.versions.outputs.UPSTREAM_VERSION }}
