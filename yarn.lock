@@ -1822,12 +1822,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:8.0.3":
-  version: 8.0.3
-  resolution: "husky@npm:8.0.3"
+"husky@npm:9.0.11":
+  version: 9.0.11
+  resolution: "husky@npm:9.0.11"
   bin:
-    husky: lib/bin.js
-  checksum: 016ab53f21f39af1b2387559faa9cb6e2bbbe6d3cccd64c186efe204ca4634fc11dca369da9aabe7cde4293573abe12f9b7251f20bef39ea33d8e1e8f0847550
+    husky: bin.mjs
+  checksum: 8e6b3a13c3808231d8a026bf293f5ce589e8aa83d226dbc0ecdd4247951d753a1421a044d763d83f0b09546675ba0847fb11dc2f159ad0eb416d31787f22b77c
   languageName: node
   linkType: hard
 
@@ -2532,7 +2532,7 @@ __metadata:
     "@commitlint/cli": "npm:17.4.0"
     "@commitlint/config-conventional": "npm:17.4.0"
     "@types/jscodeshift": "npm:0.11.6"
-    husky: "npm:8.0.3"
+    husky: "npm:9.0.11"
     jscodeshift: "npm:0.14.0"
     lint-staged: "npm:13.1.0"
     markdownlint-cli: "npm:0.33.0"
